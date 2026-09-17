@@ -1,0 +1,6 @@
+{
+  "name": "StudentHub NG",
+  "description": "The all-in-one digital platform for students in Nigerian tertiary institutions with AI study copilot, past questions, GPA/CGPA calculators, directories, and student productivity tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
