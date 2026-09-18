@@ -1,5 +1,4 @@
 import express from 'express';
-import http from 'http';
 import path from 'path';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
@@ -830,16 +829,9 @@ app.get('/api/admin/metrics', (req, res) => {
 
 // Start Server with Vite Middleware or Static Delivery
 async function startServer() {
-  const httpServer = http.createServer(app);
-
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
-      server: { 
-        middlewareMode: true,
-        hmr: {
-          server: httpServer
-        }
-      },
+      server: { middlewareMode: true },
       appType: 'spa'
     });
     app.use(vite.middlewares);
@@ -851,8 +843,8 @@ async function startServer() {
     });
   }
 
-  httpServer.listen(PORT, '0.0.0.0', () => {
-    console.log(`StudentHub NG Server running on http://0.0.0.0:${PORT}`);
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
   });
 }
 
