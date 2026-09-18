@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
-import { createServer as createViteServer } from 'vite';
 
 dotenv.config();
 
@@ -830,6 +829,8 @@ app.get('/api/admin/metrics', (req, res) => {
 // Start Server with Vite Middleware or Static Delivery
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
+    const viteModule = 'vite';
+    const { createServer: createViteServer } = await import(viteModule);
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa'
